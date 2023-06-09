@@ -5,7 +5,7 @@ function App() {
   const [data, setData] = useState({});
   const [location, setLocation] = useState("");
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=bb97dcf45fb2360d40faab747c1ee7fd`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&&appid=bb97dcf45fb2360d40faab747c1ee7fd`;
 
   const searchLocation = (event: { key: string }) => {
     if (event?.key === "Enter") {
@@ -36,7 +36,7 @@ function App() {
             <p>{data.name}</p>
           </div>
           <div className="temp">
-            {data.main ? <h1>{data.main.temp}&deg;F</h1> : null}
+            {data.main ? <h1>{data.main.temp}&deg;C</h1> : null}
           </div>
           <div className="description">
             {data.weather ? <p>{data.weather[0].main}</p> : null}
@@ -45,7 +45,7 @@ function App() {
 
         <div className="bottom">
           <div className="feels">
-            {data.main ? <p>{data.main.feels_like}&deg;F</p> : null}&nbsp;
+            {data.main ? <p>{data.main.feels_like}&deg;C</p> : null}&nbsp;
             {/* <h1>65&deg;F</h1> */}
             <p className="bold">Feels like</p>
           </div>
