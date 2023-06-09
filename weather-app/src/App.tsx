@@ -4,6 +4,7 @@ import axios from "axios";
 function App() {
   const [data, setData] = useState({});
   const [location, setLocation] = useState("");
+
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=bb97dcf45fb2360d40faab747c1ee7fd`;
 
   const searchLocation = (event: { key: string }) => {
@@ -28,30 +29,34 @@ function App() {
           type="text"
         />
       </div>
+
       <div className="container">
         <div className="top">
           <div className="location">
-            <p>Dallas</p>
+            <p>{data.name}</p>
           </div>
           <div className="temp">
-            <h1>60&deg;F</h1>
+            {data.main ? <h1>{data.main.temp}&deg;F</h1> : null}
           </div>
           <div className="description">
-            <p>Clouds</p>
+            {data.weather ? <p>{data.weather[0].main}</p> : null}
           </div>
         </div>
 
         <div className="bottom">
           <div className="feels">
-            <h1>65&deg;F</h1>
+            {data.main ? <p>{data.main.feels_like}&deg;F</p> : null}&nbsp;
+            {/* <h1>65&deg;F</h1> */}
             <p className="bold">Feels like</p>
           </div>
           <div className="humidity">
-            <p>20%</p> &nbsp;
+            {data.main ? <p>{data.main.humidity}%</p> : null}&nbsp;
+            {/* <p>20%</p> &nbsp; */}
             <p className="bold">&nbsp; Humidity</p>
           </div>
           <div className="wind">
-            <p>12 MPH</p> &nbsp;
+            {data.wind ? <p>{data.wind.speed}MPH</p> : null}&nbsp;
+            {/* <p>12 MPH</p> &nbsp; */}
             <p className="bold">&nbsp; Wind Speed</p>
           </div>
         </div>
